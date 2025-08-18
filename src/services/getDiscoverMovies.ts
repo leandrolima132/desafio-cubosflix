@@ -1,28 +1,31 @@
 import api from "../shared/config/axios";
 import type { Movie } from "../shared/types/movie";
 
-interface GetFilteredMoviesParams {
-  query: string;
-  language?: string;
+interface GetDiscoverMoviesParams {
   page?: number;
+  language?: string;
+  region?: string;
+  genres?: number[];
 }
 
-export const getFilteredMovies = async ({
-  query,
+export const getDiscoverMovies = async ({
+  page = 1,
   language,
-  page,
-}: GetFilteredMoviesParams): Promise<{
+  region,
+  genres,
+}: GetDiscoverMoviesParams): Promise<{
   results: Movie[];
   totalPages: number;
 }> => {
   const response = await api.get<{
     results: Movie[];
     total_pages: number;
-  }>("/search/movie", {
+  }>("/discover/movie", {
     params: {
       language,
-      query,
+      region,
       page,
+      with_genres: genres?.join(","),
     },
   });
 

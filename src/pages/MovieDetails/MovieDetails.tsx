@@ -58,7 +58,7 @@ export default function MovieDetails() {
   const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-dark-1 text-white">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-dark-1 text-white">
       <main className="flex-grow pt-[72px]">
         <MovieBackdrop backdropUrl={backdropUrl} />
         <div className="relative z-10 max-w-[1200px] mx-auto flex flex-col lg:flex-row justify-center px-6 py-10 gap-10">
@@ -72,7 +72,7 @@ export default function MovieDetails() {
                     {movie.title}
                   </h1>
                   {movie.original_title && (
-                    <p className="text-gray-dark-11 text-base mt-2">
+                    <p className="dark:text-gray-dark-11 text-base mt-2">
                       Título original: {movie.original_title}
                     </p>
                   )}

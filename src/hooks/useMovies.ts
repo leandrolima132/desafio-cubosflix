@@ -1,19 +1,40 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPopularMovies } from "../services/getPopularMovies";
+import { getDiscoverMovies } from "../services/getDiscoverMovies";
 import { getFilteredMovies } from "../services/getFilteredMovies";
 
-interface UseMoviesParams {
+export interface UseMoviesParams {
   searchTerm: string;
   currentPage: number;
+  language?: string;
 }
 
-export const useMovies = ({ searchTerm, currentPage }: UseMoviesParams) => {
+export const useMovies = ({
+  searchTerm,
+  currentPage,
+  language,
+  genres,
+}: UseMoviesParams & {
+  genres?: number[];
+}) => {
+  const isSearching = searchTerm.trim().length > 0;
+
   return useQuery({
-    queryKey: ["movies", searchTerm, currentPage],
+    queryKey: ["movies", searchTerm, currentPage, language, genres],
     queryFn: async () => {
-      return searchTerm
-        ? await getFilteredMovies(searchTerm)
-        : await getPopularMovies(currentPage);
+      if (isSearching) {
+        return await getFilteredMovies({
+          query: searchTerm,
+          language,
+          page: currentPage,
+        });
+      }
+
+      return await getDiscoverMovies({
+        page: currentPage,
+        language,
+        region: language === "pt-BR" ? "BR" : "US",
+        genres,
+      });
     },
   });
 };

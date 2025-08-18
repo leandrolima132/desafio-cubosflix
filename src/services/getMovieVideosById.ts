@@ -10,9 +10,6 @@ export const getMovieVideosById = async (
       params: {},
     }
   );
-  const trailer = response.data.results.find(
-    (video) =>
-      video.type === "Trailer" && video.site === "YouTube" && Boolean(video.key)
-  );
-  return trailer ?? null;
+
+  return response.data.results[0] ?? null;
 };

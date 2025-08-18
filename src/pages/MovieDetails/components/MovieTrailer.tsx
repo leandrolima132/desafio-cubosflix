@@ -7,7 +7,9 @@ export function MovieTrailer({ videoId }: MovieTrailerProps) {
 
   return (
     <div className="w-full max-w-[1238px] mx-auto my-10 px-4">
-      <h2 className="text-2xl font-semibold text-white mb-4">Trailer</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
+        Trailer
+      </h2>
 
       <div className="relative w-full pb-[56.25%] rounded-lg overflow-hidden shadow-lg">
         <iframe

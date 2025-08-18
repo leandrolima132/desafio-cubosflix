@@ -7,16 +7,31 @@ import { Pagination } from "./components/Pagination";
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [language, setLanguage] = useState("pt-BR");
+  const [genres, setGenres] = useState<number[]>([]);
+  console.log(genres);
 
-  const { data, isLoading } = useMovies({ searchTerm, currentPage });
+  const { data, isLoading } = useMovies({
+    searchTerm,
+    currentPage,
+    language,
+    genres,
+  });
 
   const movies = data?.results ?? [];
   const totalPages = data?.totalPages ?? 1;
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-dark-1">
+    <div className="min-h-screen flex flex-col dark:bg-gray-dark-1">
       <main className="flex-grow pt-[72px]">
-        <HeroSection searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <HeroSection
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          language={language}
+          setLanguage={setLanguage}
+          genres={genres}
+          setGenres={setGenres}
+        />
         <MovieGrid movies={movies} loading={isLoading} />
         <div className="block sm:hidden">
           <Pagination

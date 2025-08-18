@@ -1,18 +1,48 @@
+import { useGenres } from "../../../hooks/useGenres";
+
 import { SearchBar } from "./SearchBar";
+import { FilterPopover } from "./FilterPopover";
+import { MovieBackdrop } from "../../MovieDetails/components/MovieBackdrop";
 
 interface Props {
   searchTerm: string;
   setSearchTerm: (value: string) => void;
+  language: string;
+  setLanguage: (value: string) => void;
+
+  genres: number[];
+  setGenres: (value: number[]) => void;
 }
 
-export function HeroSection({ searchTerm, setSearchTerm }: Props) {
+export function HeroSection({
+  searchTerm,
+  setSearchTerm,
+  language,
+  setLanguage,
+  genres,
+  setGenres,
+}: Props) {
+  const { data: availableGenres = [], isLoading: loadingGenres } =
+    useGenres(language);
+
   return (
     <section className="relative h-[564px] overflow-hidden">
-      <div className="absolute inset-0 bg-gray-dark-1/90 bg-[url('/assets/home-background.svg')] bg-cover bg-center bg-no-repeat z-0" />
-      <div className="relative z-10 flex py-6 flex-col items-center h-full px-6 text-center gap-4">
+      <MovieBackdrop backdropUrl="/assets/home-background2.svg" />
+
+      {/* Conteúdo central */}
+      <div className="relative z-10 flex py-6 flex-row justify-center px-6 text-center gap-4">
         <SearchBar
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        <FilterPopover
+          language={language}
+          setLanguage={setLanguage}
+          genres={genres}
+          setGenres={setGenres}
+          availableGenres={availableGenres}
+          loadingGenres={loadingGenres}
         />
       </div>
     </section>
