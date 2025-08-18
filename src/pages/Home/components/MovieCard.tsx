@@ -1,25 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { type Movie } from "../services/getAllMovies";
+import type { Movie } from "../../../shared/types/movie";
+import { formatDateBR } from "../../../shared/utils/formattedDate";
 
 interface Props {
   movie: Movie;
 }
 
-export default function MovieCard({ movie }: Props) {
+export function MovieCard({ movie }: Props) {
   const navigate = useNavigate();
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("pt-BR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-  };
 
   return (
     <div
       className="relative group w-[183px] h-[281px] sm:w-[220px] sm:h-[340px] md:w-[235px] md:h-[355px] rounded overflow-hidden cursor-pointer transition-shadow hover:shadow-2xl shadow-black/40"
-      onClick={() => navigate(`/filme/${movie.id}`)}
+      onClick={() => navigate(`/movie/${movie.id}`)}
     >
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -46,11 +39,11 @@ export default function MovieCard({ movie }: Props) {
           {movie.title}
         </h3>
         <span className="text-gray-400 text-sm">
-          Lançamento: {formatDate(movie.release_date)}
+          Lançamento: {formatDateBR(movie.release_date)}
         </span>
 
         <p className="text-gray-200 text-sm line-clamp-2">{movie.overview}</p>
-        <button className="mt-4 bg-purple-dark-10 hover:bg-purple-dark-12 text-white px-4 py-2 rounded-lg transition-colors w-full">
+        <button className="mt-4 bg-purple-dark-10 hover:bg-purple-dark-9 text-white px-4 py-2 rounded-lg transition-colors w-full">
           Ver Detalhes
         </button>
       </div>

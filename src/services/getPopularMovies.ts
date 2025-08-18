@@ -1,15 +1,15 @@
 import api from "../shared/config/axios";
 import type { Movie } from "../shared/types/movie";
 
-export const getFilteredMovies = async (
-  query: string
+export const getPopularMovies = async (
+  page = 1
 ): Promise<{ results: Movie[]; totalPages: number }> => {
   const response = await api.get<{
     results: Movie[];
     total_pages: number;
-  }>("/search/movie", {
+  }>("/movie/popular", {
     params: {
-      query,
+      page,
     },
   });
 

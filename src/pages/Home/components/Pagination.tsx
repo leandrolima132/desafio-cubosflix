@@ -9,7 +9,7 @@ interface Props {
   loading?: boolean;
 }
 
-export default function Pagination({
+export function Pagination({
   currentPage,
   totalPages,
   onPageChange,
@@ -84,10 +84,8 @@ export default function Pagination({
 function PaginationSkeleton() {
   return (
     <div className="flex justify-center items-center gap-2 py-4 sm:py-6 animate-pulse">
-      {/* ← */}
       <div className="w-16 h-11 sm:w-12 sm:h-11 rounded bg-gray-dark-3" />
 
-      {/* Simulação de 3 páginas */}
       {Array.from({ length: 3 }).map((_, index) => (
         <div
           key={index}
@@ -95,10 +93,8 @@ function PaginationSkeleton() {
         />
       ))}
 
-      {/* ... */}
       <div className="w-[50px] h-11 sm:w-12 sm:h-11 rounded bg-gray-dark-3" />
 
-      {/* → */}
       <div className="w-16 h-11 sm:w-12 sm:h-11 rounded bg-gray-dark-3" />
     </div>
   );
