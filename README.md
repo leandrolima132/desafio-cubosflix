@@ -1,3 +1,6 @@
+![Home](/public/assets/home-readme.png)
+![Movie Details](/public/assets/movie-details-readme.png)
+
 # 🎬 CubosFlix
 
 CubosFlix é um aplicativo web responsivo que consome a API do [TMDB (The Movie Database)](https://www.themoviedb.org/documentation/api), permitindo aos usuários pesquisar por filmes e visualizar detalhes completos de cada título. O projeto foi desenvolvido como parte de um desafio técnico, com foco em performance, acessibilidade e fidelidade visual ao design proposto.
