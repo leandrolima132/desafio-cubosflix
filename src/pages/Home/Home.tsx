@@ -9,7 +9,6 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [language, setLanguage] = useState("pt-BR");
   const [genres, setGenres] = useState<number[]>([]);
-  console.log(genres);
 
   const { data, isLoading } = useMovies({
     searchTerm,

@@ -1,98 +1,118 @@
-# 🎬 Cubos Movies — Desafio Frontend
+# 🎬 CubosFlix
 
-## 📌 Objetivo
-
-Desenvolver um aplicativo web responsivo que consome a [API do TMDB](https://developer.themoviedb.org/docs), permitindo aos usuários pesquisar por filmes e visualizar detalhes completos de cada título. A proposta é entregar uma experiência funcional, intuitiva e visualmente alinhada ao design fornecido.
+CubosFlix é um aplicativo web responsivo que consome a API do [TMDB (The Movie Database)](https://www.themoviedb.org/documentation/api), permitindo aos usuários pesquisar por filmes e visualizar detalhes completos de cada título. O projeto foi desenvolvido como parte de um desafio técnico, com foco em performance, acessibilidade e fidelidade visual ao design proposto.
 
 ---
 
-## 🖼️ Design
+## 📌 Objetivo
 
-O layout base foi disponibilizado via Figma, com referências para larguras de 1366px e 414px. Para larguras intermediárias ou maiores, foi adotada uma abordagem responsiva baseada em **flexbox** e **grid**, garantindo fluidez e consistência visual.
+Desenvolver uma aplicação web funcional e intuitiva que:
 
-### 🎨 Cores e Temas
+- Consome dados da API TMDB
+- Permite pesquisa e filtragem de filmes
+- Exibe detalhes completos de cada filme
+- Oferece alternância entre temas claro e escuro
+- Segue o design proposto no Figma com responsividade
 
-Utilizamos o [Radix Colors](https://www.radix-ui.com/colors) como sistema de cores, com foco em acessibilidade e flexibilidade. O tema principal é **escuro**, mas o app oferece alternância para o **modo claro** via botão no canto superior direito.
+---
 
-> Obs: O uso do Radix Colors é independente da biblioteca de componentes Radix. Os componentes foram desenvolvidos com liberdade técnica.
+## 🖌️ Design e Responsividade
+
+O layout foi baseado em um design Figma com larguras específicas (1366px e 414px). Para larguras intermediárias e maiores, foi adotada uma abordagem **mobile-first com breakpoints personalizados**, garantindo fluidez e consistência visual em qualquer dispositivo.
+
+### 💡 Melhorias implementadas:
+
+- Comportamento adaptativo para larguras não especificadas
+- Feedback visual em interações (hover, focus, loading)
+- Animações sutis para transições de tema e navegação
+
+---
+
+## 🎨 Cores e Temas
+
+Utilizamos o [Radix Colors](https://www.radix-ui.com/colors) como sistema de cores, garantindo:
+
+- Acessibilidade e contraste adequado
+- Facilidade na criação de temas claro/escuro
+- Integração via CSS e JavaScript
+
+O tema padrão é **escuro**, com opção de alternância no canto superior direito da interface.
 
 ---
 
 ## 🔍 Funcionalidades
 
-### 🏠 Página Inicial (Pesquisa de Filmes)
+### Página de Pesquisa (Home)
 
-- Exibe uma lista paginada de filmes (10 por página), mesmo sem pesquisa ativa.
-- Campo de busca com atualização dinâmica dos resultados.
-- Área de filtros personalizável, com inputs visuais alinhados ao design.
-- Navegação para a página de detalhes ao clicar em um filme.
+- Exibe lista de filmes mesmo sem pesquisa
+- Campo de busca
+- Paginação de 20 itens por página
+- Filtros dinâmicos baseados na API TMDB (ex: gênero e idioma)
 
-### 🎛️ Filtros
+### Página de Detalhes
 
-- Localizados abaixo do campo de busca.
-- Implementados com base nas possibilidades da API TMDB.
-- Permitem refinar resultados por critérios como gênero, idioma, ano, etc.
-
-### 📄 Página de Detalhes do Filme
-
-- Exibe informações como:
-  - Título e título original
-  - Data de lançamento
-  - Sinopse
-  - Orçamento, receita e lucro
-  - Popularidade, votos e nota média
-  - Status do filme (traduzido para português)
-- Trailer oficial embutido (quando disponível)
+- Título e título original
+- Data de lançamento
+- Descrição/sinopse
+- Orçamento e receita
+- Imagem de capa e fundo
+- Informações adicionais como nota e popularidade
 
 ---
 
-## 🧰 Stack Utilizada
+## 🧰 Stack Tecnológica
 
-- **React** com Vite
-- **TypeScript**
-- **Tailwind CSS** para estilização
-- **React Query** para gerenciamento de dados
-- **React Router** para navegação
-- **Axios** para requisições HTTP
-- **Radix Colors** para sistema de cores
-
-> A stack foi escolhida por sua performance, modularidade e facilidade de manutenção.
-
----
-
-## 🧪 Critérios de Avaliação
-
-- Fidelidade ao design proposto
-- Funcionalidade completa e fluida
-- Organização e legibilidade do código
-- Boas práticas de acessibilidade e responsividade
-- Clareza nas decisões técnicas
+| Tecnologia        | Finalidade                         |
+| ----------------- | ---------------------------------- |
+| React 19          | UI principal                       |
+| Vite              | Build e dev server                 |
+| TypeScript        | Tipagem estática                   |
+| TailwindCSS       | Estilização responsiva             |
+| Radix Colors      | Sistema de cores                   |
+| React Query       | Gerenciamento de dados assíncronos |
+| Axios             | Requisições HTTP                   |
+| React Router DOM  | Navegação entre páginas            |
+| ESLint + Prettier | Padronização e linting             |
 
 ---
 
-## 📦 Assets
+## 📁 Estrutura do Projeto
 
-Na pasta `assets/` do projeto, você encontrará:
-
-- `logo.svg` — logotipo da Cubos
-- `background.jpg` — imagem de fundo usada no design
+![Estrutura do Projeto](/public/assets/project-structure.png)
 
 ---
 
-## 🚀 Como executar o projeto
-
-### Pré-requisitos
-
-- Node.js 18+
-- Gerenciador de pacotes (npm ou yarn)
-
-### Instalação
+## 🛠️ Como rodar o projeto
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/cubos-movies.git
-cd cubos-movies
+# Clonar o repositório
+git clone https://github.com/leandrolima132/desafio-cubosflix.git
+cd cubosflix
 
-# Instale as dependências
+# Instalar dependências
 npm install
+
+# Rodar em modo desenvolvimento
+npm run dev
 ```
+
+## 🔐 Configuração de Ambiente
+
+Para que o projeto funcione corretamente, é necessário configurar as variáveis de ambiente com as credenciais da API do TMDB.
+
+#✅ Passos:
+
+- Crie uma conta gratuita no TMDB. https://developer.themoviedb.org/docs/getting-started
+
+- Acesse API Settings no seu perfil.
+
+- Gere um token de acesso (v4 auth).
+
+- Na raiz do projeto, crie um arquivo chamado .env com o seguinte conteúdo:
+
+```bash
+VITE_TMDB_API_TOKEN=SEU_TOKEN_AQUI
+VITE_TMDB_API_URL=https://api.themoviedb.org/3
+```
+
+⚠️ Importante: Nunca compartilhe seu token em repositórios públicos. Use o .env para manter suas credenciais seguras.
