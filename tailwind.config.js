@@ -1,4 +1,3 @@
-// tailwind.config.js
 const {
   purple,
   purpleA,

@@ -1,4 +1,3 @@
-// src/context/ThemeContext.ts
 import { createContext } from "react";
 
 type Theme = "light" | "dark";
