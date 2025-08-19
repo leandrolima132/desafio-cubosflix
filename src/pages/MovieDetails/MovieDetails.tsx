@@ -4,12 +4,12 @@ import { MovieBackdrop } from "./components/MovieBackdrop";
 import { MoviePoster } from "./components/MoviePoster";
 
 import { Badge } from "../../components/Badge";
-import ProgressCircle from "./components/ProgressCircle";
 import { formatDateBR } from "../../shared/utils/formattedDate";
 import { MovieTrailer } from "./components/MovieTrailer";
 import { useMovieVideos } from "../../hooks/useMovieVideos";
 import { formatCurrency } from "../../shared/utils/formattedMoney";
 import { MovieGenres } from "./components/MovieGenres";
+import MovieStats from "./components/MovieStats";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -63,9 +63,9 @@ export default function MovieDetails() {
         <MovieBackdrop backdropUrl={backdropUrl} />
         <div className="relative z-10 max-w-[1200px] mx-auto flex flex-col lg:flex-row justify-center px-6 py-10 gap-10">
           <MoviePoster posterUrl={posterUrl} title={movie.title} />
-          <div className="flex flex-col lg:flex-row gap-10 flex-wrap">
+          <div className="flex flex-col lg:flex-row sm:gap-10 flex-wrap">
             {/* Coluna 1: Header + Gêneros */}
-            <div className="flex-1 min-w-[300px] space-y-6 text-sm">
+            <div className="flex-1 min-w-[300px] space-y-6 text-sm ">
               <div className="max-w-xl space-y-6 text-sm">
                 <div className="space-y-2">
                   <h1 className=" text-[32px] font-semibold break-words leading-tight">
@@ -82,6 +82,15 @@ export default function MovieDetails() {
                     </p>
                   )}
                 </div>
+
+                <div className="block md:hidden">
+                  <MovieStats
+                    popularity={movie.popularity}
+                    voteCount={movie.vote_count}
+                    voteAverage={movie.vote_average}
+                  />
+                </div>
+
                 <Badge title="Sinopse" description={movie.overview} />
                 <MovieGenres genres={movie.genres} />
               </div>
@@ -89,20 +98,12 @@ export default function MovieDetails() {
             {/* Coluna 2: Badges & Stats */}
             <div className="flex-1 min-w-[300px] space-y-6 text-sm">
               {/* Popularidade / Votos / Circle */}
-              <div className="grid grid-cols-3 gap-4">
-                <Badge
-                  title="Popularidade"
-                  description={movie.popularity.toFixed(0)}
+              <div className="hidden md:block">
+                <MovieStats
+                  popularity={movie.popularity}
+                  voteCount={movie.vote_count}
+                  voteAverage={movie.vote_average}
                 />
-                <Badge
-                  title="Votos"
-                  description={movie.vote_count.toString()}
-                />
-                <div className="flex items-center justify-center h-full">
-                  <ProgressCircle
-                    percentage={Math.round(movie.vote_average * 10)}
-                  />
-                </div>
               </div>
 
               {/* Informações principais */}
